@@ -1,0 +1,25 @@
+.cardDimension {
+  width: 100%;
+  transition: transform 0.8s;
+}
+
+.cardDimension:hover {
+  width: 104%;
+}
+.cardDimension img {
+  width: 100%;
+  display: block;
+}
+.colorText {
+  color: white;
+}
+
+
+.hoverEffect {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: transform 0.8s;
+}
+
+.card:hover .hoverEffect{
+  background-color: rgba(0, 0, 0, 1);
+}
