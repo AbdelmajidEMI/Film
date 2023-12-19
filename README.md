@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Description of the project
+
+In this project, we are going to build a website that sells movies and TV series.
+In this project, we are starting from building the app, testing in then deploying it in a 
+scalable AWS cloud envirement
