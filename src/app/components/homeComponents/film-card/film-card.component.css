@@ -1,9 +1,11 @@
 .cardDimension {
   width: 100%;
+  max-width: 18rem;
   transition: transform 0.8s;
 }
 
 .cardDimension:hover {
+  max-width: 18rem;
   width: 104%;
 }
 .cardDimension img {

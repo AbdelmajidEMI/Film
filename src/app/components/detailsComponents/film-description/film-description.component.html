@@ -1,0 +1,18 @@
+<div class="card bg-transparent text-white">
+  <div class="card-body">
+    <div class="row flex-column">
+      <div class="col-md-8">
+        <h2 class="card-title">{{ film.title }}</h2>
+        <p class="card-text">{{ film.overview }}</p>
+      </div>
+      <div class="col-md-4">
+        <p class="card-text"><i class="bi bi-globe"></i> Original Language: {{ film.original_language }}</p>
+        <p class="card-text"><i class="bi bi-star-fill"></i> Vote Average: {{ film.vote_average.toFixed(2) }}</p>
+        <p class="card-text"><i class="bi bi-people-fill"></i> Vote Count: {{ film.vote_count }}</p>
+        <p class="card-text"><i class="bi bi-shield-fill"></i> Adult: {{ film.adult }}</p>
+        <p class="card-text"><i class="bi bi-clock-fill"></i> Runtime: {{ film.runtime }} minutes</p>
+
+      </div>
+    </div>
+  </div>
+</div>

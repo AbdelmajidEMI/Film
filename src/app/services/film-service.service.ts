@@ -1,50 +1,40 @@
 import { Injectable } from '@angular/core';
-import {AdditionalInfo, Film} from "../models/film.model";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+export interface Credentials {
+  username: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilmService {
-  API_TOKEN :any= "4daaa15d6824a11471fbb14a71363ffd";
-  url = 'https://api.themoviedb.org/3/movie/popular?api_key=' + this.API_TOKEN;
+  API_TOKEN: string = '4daaa15d6824a11471fbb14a71363ffd';
+  base_url: string = 'https://api.themoviedb.org/3/';
+  popular_movies_endpoint: string = 'movie/popular';
+  search_movies_endpoint: string = 'search/movie';
+  language: string = 'fr';
 
-  films: Film[] = [
-    {
-      id: 1,
-      title: "Blue Beetle",
-      year: "2010",
-      genres: ["Action", "Adventure", "Thriller"],
-      imageUrl: "https://m.media-amazon.com/images/M/MV5BMmY1ODUzZGItNDllOS00MDBhLTg4NmUtYjU4YjUxMGNlYmMwXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX500.jpg"
-    },
-  ];
+  constructor(private http: HttpClient) {}
 
-  additionalInfo: AdditionalInfo = {
-    director: "Steven Spielberg",
-    duration: 120,
-    language: "English",
-    country: "United States",
-    rating: 9.0,
-    awards: ["Academy Award for Best Picture", "Golden Globe Award for Best Director"]
-    // Add other additionalInfo properties
-  };
-
-
-
-  constructor() {}
-
-  getFilms(): Film[] {
-    return this.films;
+  getMovies(): Observable<any> {
+    const url = `${this.base_url}${this.popular_movies_endpoint}?api_key=${this.API_TOKEN}&language=${this.language}`;
+    return this.http.get<any>(url);
   }
 
-  getFilmById(id: number): Film | undefined {
-    return this.films.find(film => film.id === id);
+  getMovieDetail(id: number): Observable<any> {
+    const url = `${this.base_url}movie/${id}?api_key=${this.API_TOKEN}&language=${this.language}`;
+    return this.http.get<any>(url);
   }
 
-  getInfos(): AdditionalInfo {
-    return this.additionalInfo;
+  getMoviesByKey(key: string): Observable<any> {
+    const url = `${this.base_url}${this.search_movies_endpoint}?api_key=${this.API_TOKEN}&language=${this.language}&query=${key}&page=1`;
+    return this.http.get<any>(url);
   }
 
-  getAdditionalInfo(): AdditionalInfo {
-    return this.additionalInfo;
+  searchMoviesByKey(key: string): Observable<any> {
+    const url = `${this.base_url}${this.search_movies_endpoint}?api_key=${this.API_TOKEN}&language=${this.language}&query=${key}&page=1`;
+    return this.http.get<any>(url);
   }
 }

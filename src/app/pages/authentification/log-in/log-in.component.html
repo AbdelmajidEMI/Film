@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form class="container" (ngSubmit)="logInButton(username.value, password.value)">
+        <!-- Username input -->
+        <div class="form-group row gx-5">
+          <label class="col" for="Username">Username</label>
+          <input type="text" class="form-control col" id="Username" #username aria-describedby="username" placeholder="Enter Username">
+        </div>
+        <!-- Password input -->
+        <div class="form-group row gx-5">
+          <label class="col" for="Password">Password</label>
+          <input type="password" class="form-control col" id="Password" #password placeholder="Password">
+        </div>
+        <!-- Log In button -->
+        <button type="submit" class="btn btn-primary">Log In</button>
+
+        <!-- Sign Up button -->
+        <a href="/auth/authS" class="btn btn-secondary">Sign Up</a>
+      </form>
+    </div>
+  </div>
+</div>

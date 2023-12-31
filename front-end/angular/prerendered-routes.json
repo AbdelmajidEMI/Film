@@ -1,0 +1,7 @@
+{
+  "routes": [
+    "/",
+    "/auth/authL",
+    "/auth/authS"
+  ]
+}

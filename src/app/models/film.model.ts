@@ -1,12 +1,6 @@
-export interface Film {
-  id: number,
-  title: string,
-  year: string,
-  genres: string[],
-  imageUrl: string,
-}
 
-export interface Film1 {
+
+export interface Film {
   id: number;
   title: string;
   release_date: string;
@@ -24,12 +18,3 @@ export interface Film1 {
 
 
 
-export interface AdditionalInfo {
-  director: string;
-  duration: number;
-  language: string;
-  country: string;
-  rating: number;
-  awards: string[];
-  // Add other properties as needed
-}
