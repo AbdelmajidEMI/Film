@@ -1,11 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FilmCardComponent} from "../../../components/homeComponents/film-card/film-card.component";
 import {NgForOf} from "@angular/common";
-import {Film} from "../../../models/film.model";
-import {FilmService} from "../../../services/film-service.service";
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
 import {FavoriService} from "../../../services/favori.service";
+
 
 @Component({
   selector: 'app-favoris',
@@ -17,27 +14,25 @@ import {FavoriService} from "../../../services/favori.service";
   templateUrl: './favoris.component.html',
   styleUrl: './favoris.component.css'
 })
-export class FavorisComponent {
-  films: Film[] = [];
-  favoriService: FavoriService; // No need to initialize it here
+export class FavorisComponent implements OnInit {
+    films: any[];
 
-  constructor(private http: HttpClient, public route: ActivatedRoute) {
-    this.favoriService = new FavoriService(this.http); // Initialize in the constructor
-  }
+    constructor(private favoriService: FavoriService) {
+        this.films = [];
+    }
 
-    getFavoris(): void {
+
+
+    ngOnInit(): void {
         this.favoriService.getFavorisFilms().subscribe(
-            (filmsData: any[]) => {
-                this.films = filmsData.map(data => data); // Consider proper mapping here based on the Film model
+            films => {
+                this.films = films; // Assign the films to the component property
+                console.log('Favorite Films:', this.films); // Optionally log films
             },
             error => {
-                console.error('Error fetching favoris:', error);
+                console.error('Error fetching films:', error);
             }
         );
     }
-
-  ngOnInit(): void {
-    this.getFavoris();
-  }
-
 }
+

@@ -27,8 +27,9 @@ export class HeaderComponent {
     private http : HttpClient
   ) {
     this.app = AuthenticationService.getInstance(this.router, this.http);
-    this.username = "" + AuthenticationService.getUser();
 
+    this.username = "" + AuthenticationService.getUser();
+    console.log(this.username);
   }
 
 

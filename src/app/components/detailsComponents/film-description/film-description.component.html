@@ -2,15 +2,21 @@
   <div class="card-body">
     <div class="row flex-column">
       <div class="col-md-8">
-        <h2 class="card-title">{{ film.title }}</h2>
-        <p class="card-text">{{ film.overview }}</p>
+        <h2 class="card-title">{{ film?.title }}</h2>
+        <p class="card-text">{{ film?.overview }}</p>
       </div>
       <div class="col-md-4">
-        <p class="card-text"><i class="bi bi-globe"></i> Original Language: {{ film.original_language }}</p>
-        <p class="card-text"><i class="bi bi-star-fill"></i> Vote Average: {{ film.vote_average.toFixed(2) }}</p>
-        <p class="card-text"><i class="bi bi-people-fill"></i> Vote Count: {{ film.vote_count }}</p>
-        <p class="card-text"><i class="bi bi-shield-fill"></i> Adult: {{ film.adult }}</p>
-        <p class="card-text"><i class="bi bi-clock-fill"></i> Runtime: {{ film.runtime }} minutes</p>
+        <p class="card-text"><i class="bi bi-globe"></i> Original Language: {{ film?.original_language }}</p>
+        <p class="card-text"><i class="bi bi-star-fill"></i> Vote Average: {{ film?.vote_average.toFixed(2) }}</p>
+        <p class="card-text"><i class="bi bi-people-fill"></i> Vote Count: {{ film?.vote_count }}</p>
+        <p class="card-text"><i class="bi bi-shield-fill"></i> Adult: {{ film?.adult }}</p>
+        <p class="card-text"><i class="bi bi-clock-fill"></i> Runtime: {{ film?.runtime }} minutes</p>
+
+        <div class="d-flex">
+          <button type="button" class="btn btn-sm btn-secondary"><i class="bi bi-play-fill"></i></button>
+          <button *ngIf="!this.isFavorited" type="button" (click)="addFavorite(this.user, film.id)" class="btn btn-sm btn-outline-light ms-auto me-2"><i class="bi bi-star"></i></button>
+          <button *ngIf="this.isFavorited" type="button" (click)="deleteFavorite(this.user, film.id)" class="btn btn-sm btn-outline-light ms-auto me-2"><i class="bi bi-star-fill"></i></button>
+        </div>
 
       </div>
     </div>
