@@ -1,7 +1,7 @@
 <form>
   <div class="mb-3">
     <label for="comment" class="form-label">Comment</label>
-    <textarea class="form-control" id="comment" rows="10"></textarea>
+    <textarea [(ngModel)]="this.comment" name="comment" class="form-control myStyle" id="comment" rows="10"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button (click)="this.submitComment()" type="submit" class="btn btn-primary myBtStyle">Submit</button>
 </form>

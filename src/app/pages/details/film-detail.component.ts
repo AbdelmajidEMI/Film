@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Film} from "../../models/film.model";
 import {FilmCardComponent} from "../../components/homeComponents/film-card/film-card.component";
 import {FilmCommentComponent} from "../../components/detailsComponents/film-comment/film-comment.component";
 import {FilmDescriptionComponent} from "../../components/detailsComponents/film-description/film-description.component";
@@ -9,11 +8,13 @@ import {HttpClient} from "@angular/common/http";
 import {AllCommentsComponent} from "../../components/detailsComponents/all-comments/all-comments.component";
 import {FavoriService} from "../../services/favori.service";
 import {AuthenticationService} from "../../services/authentification.service";
+import {CommentService} from "../../services/comment.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-film-detail',
   standalone: true,
-    imports: [FilmCardComponent, FilmCommentComponent, FilmDescriptionComponent, AllCommentsComponent],
+  imports: [FilmCardComponent, FilmCommentComponent, FilmDescriptionComponent, AllCommentsComponent, NgIf],
   templateUrl: './film-detail.component.html',
   styleUrl: './film-detail.component.css'
 })
@@ -23,10 +24,13 @@ export class FilmDetailComponent implements OnInit{
   private favService : FavoriService;
   public user: string;
   isFavorited: boolean = false;
+  comments: any[] = [];
+  commentService: CommentService;
 
-  constructor(public route : ActivatedRoute , private http : HttpClient, favService : FavoriService) {
+  constructor(public route : ActivatedRoute , private http : HttpClient, favService : FavoriService, commentService: CommentService) {
     this.favService = favService;
     this.user = AuthenticationService.getUser();
+    this.commentService = commentService;
   }
 
   ngOnInit(): void {
@@ -34,6 +38,9 @@ export class FilmDetailComponent implements OnInit{
 
     this.filmService.getMovieDetail(id).subscribe(data => {
       this.film=data;
+      this.commentService.getAllComment(this.film.id).subscribe(comments => {
+          this.comments = comments;
+      });
       this.favService.isFavorit(this.user, this.film.id).then((isFavorited) => {
         this.isFavorited = isFavorited;
       }).catch((error) => {

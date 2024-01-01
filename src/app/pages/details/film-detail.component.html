@@ -11,11 +11,11 @@
     </div>
   </div>
 
-  <div class="container bi-text-right">
+  <div class="container bi-text-right" *ngIf="film">
     <div class="row align-items-start">
       <div class="col">
-        <app-film-comment></app-film-comment>
-        <app-all-comments></app-all-comments>
+        <app-film-comment [filmId]="film.id"></app-film-comment>
+        <app-all-comments [comments]="comments"></app-all-comments>
       </div>
     </div>
   </div>
