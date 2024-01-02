@@ -1,0 +1,11 @@
+<section class="comments-section comments">
+  <h1 class="text-white">Comments</h1>
+  <div class="comments-list">
+    <div class="media" *ngFor="let comment of comments">
+      <div class="media-body gx-5">
+        <h2 class="mt-0 text-yello"> {{ comment?.username }}</h2>
+        <p class="text-white" style="font-size: 30px">{{ comment?.comment }}</p>
+      </div>
+    </div>
+  </div>
+</section>
